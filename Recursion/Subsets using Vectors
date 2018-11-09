@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void subsetsUtil(vector<int>& A, vector<vector<int> >& res, 
+            vector<int>& subset, int index) 
+{ 
+cout<<"i after function"<<index<<endl;
+for (int i = index; i < A.size(); i++) { 
+     cout<<"i after loop is"<<i<<endl;
+    // include the A[i] in subset. 
+    subset.push_back(A[i]); 
+    res.push_back(subset); 
+cout<<"i is"<<i<<endl;
+    // move onto the next element. 
+    subsetsUtil(A, res, subset, i + 1);
+    cout<<"****************************\n";
+	cout<<"i after pop is"<<i<<endl; 
+    for(int k=0;k<subset.size();k++)
+    {
+    	cout<<subset[k]<<" ";
+	}
+	cout<<"\n";
+	cout<<"*******************************\n";
+    subset.pop_back(); 
+} 
+
+return; 
+}
+vector<vector<int> > subsets(vector<int>& A) 
+{ 
+    vector<int> subset; 
+    vector<vector<int> > res; 
+
+    // include the null element in the set. 
+    //res.push_back(subset); 
+
+    // keeps track of current element in vector A; 
+    int index = 0; 
+    subsetsUtil(A, res, subset, index); 
+
+   return res; 
+}
+int main()
+{
+	vector<int> arr={2,3,2};
+	vector<vector<int> > res = subsets(arr);
+	for(auto i : res)
+	{
+		for(auto x : i)
+		{
+			cout<<x<<" ";
+		}
+		cout<<endl;
+	}
+}
