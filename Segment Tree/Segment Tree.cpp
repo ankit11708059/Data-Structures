@@ -1,6 +1,22 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+void update(int *tree,int ss,int se,int incre,int i,int index)
+{
+	if(i<ss || i>se)
+	{
+		return;
+	}
+	if(ss==se){
+	tree[index]=tree[index]+incre;
+	return;
+}
+	int mid=(ss+se)/2;
+	update(tree,ss,mid,incre,i,2*index);
+	update(tree,mid+1,se,incre,i,2*index+1);
+	tree[index]=min(tree[2*index],tree[2*index+1]);
+	
+}
 int query(int *tree,int ss,int ee,int qs,int qe,int index)
 {
 	if(ss>=qs && ee<=qe)
@@ -35,6 +51,13 @@ int main()
 	int n=6;
 	int *tree=new int[13];
 	buildTree(a,0,5,tree,1);
-	cout<<query(tree,0,5,0,5,1);
+	update(tree,0,5,15,3,1);
+	int q=5;
+	while(q--)
+	{
+		int l,r;
+		cin>>l>>r;
+		cout<<query(tree,0,5,l,r,1);
+	}
 	
 }
