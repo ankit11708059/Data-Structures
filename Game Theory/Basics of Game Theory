@@ -1,0 +1,9 @@
+Some Basics of Game Theory.
+
+Q1.Let us suppose that you have 74 coins and you can pick minimum 2 coins and maximum 6 coins and There are two players A and B
+how much coins should a pick at start to win the game.
+	
+Ans 1: You have to reduce 74 to multiple of (2+6) so A will reduce 74 to 72.Now its Finders winners means the player who plays
+       last turn wins the match At each turn A will reduce the game to multiple of 8 to win the game at last suppose at last 
+       the number will arrive at 8 now B will pick any thing between 2 and 6 coins a will pick the left over coin and wins the
+       match.
