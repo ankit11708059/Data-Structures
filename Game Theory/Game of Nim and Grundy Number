@@ -2,4 +2,8 @@
 1. A simple Game of Nim - We are given N piles have N[i] coins in each Piles No we have to calculate xor of array if it come out to
    be zero then the current position is lossing position and the position after it would be winning.
 
+2. Above game is Finder winner/ Normal game another one is miser gamein which the person who is not able to pick any coin wins
+   so the concept is all same but the only difference is that suppose we have 5 piles and each having one coin so now a player 
+   is bounded to choose a single coin so if piles are odd 2 will win either first will win.
+
 **************************************************** Composite / Complex Game **************************************************
