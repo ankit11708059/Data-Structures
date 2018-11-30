@@ -8,5 +8,6 @@ Ans 1: You have to reduce 74 to multiple of (2+6) so A will reduce 74 to 72.Now 
        the number will arrive at 8 now B will pick any thing between 2 and 6 coins a will pick the left over coin and wins the
        match.But if it would be a Keepers losers game than we have to reduce the number to multiple of 8 + x (Where x is equal to
        1<x<=a ).
-       
+   
+   **************************** Composite Game / Grundy Number **************************************************************
 Imp-> We will use sprague grundy theorem in that case in which we are not suppose to choose any no of coins we want we have a limit.
