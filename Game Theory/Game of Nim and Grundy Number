@@ -1,3 +1,5 @@
 
 1. A simple Game of Nim - We are given N piles have N[i] coins in each Piles No we have to calculate xor of array if it come out to
    be zero then the current position is lossing position and the position after it would be winning.
+
+**************************************************** Composite / Complex Game **************************************************
