@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+/*   What is Seive Segmentation and why we use it ?
+Ans :It is used to calculate Prime number between a range and we are not supposed to make array of such large range */ 
+
+void primeSieve(int *p,int n)
+{
+	p[0]=0;
+	p[1]=0,p[2]=1;
+
+	for(int i=3;i<=n;i=i+2)
+	{
+		p[i]=1;
+	}
+	for(int i=3;i<=n;i=i+2)
+	{
+		if(p[i])
+		{
+			for(int j=i*i;j<=n;j=j+2*i)
+			{
+				p[j]=0;
+			}
+		}
+	}
+
+}
+int main()
+{
+    int a,b;
+    cin>>a>>b;
+	int N=100000;
+	int p[N]={0};
+	int f[b-a+1];
+	memset(f,1,sizeof(f));
+	primeSieve(p,100);
+for(int i=2;i<=sqrt(b);i++)
+    {
+        if(p[i])
+        {
+            for(int j=a;j<=b;j++)
+            {
+                if(j==i)
+                    continue;
+                else if(j%i==0)
+                    f[j-a]=0;
+            }
+        }
+    }
+    for(int i=a;i<=b;i++)
+    {
+        if(f[i-a])
+        {
+            cout<<i<<" ";
+        }
+    }
+}
