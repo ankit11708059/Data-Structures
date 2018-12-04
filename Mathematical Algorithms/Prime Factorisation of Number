@@ -1,0 +1,64 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> primeSieve(int *p,int n)
+{
+    vector<int> primes;
+	p[0]=0;
+	p[1]=0,p[2]=1;
+
+	for(int i=3;i<=n;i=i+2)
+	{
+		p[i]=1;
+	}
+	for(int i=3;i<=n;i=i+2)
+	{
+		if(p[i])
+		{
+			for(int j=i*i;j<=n;j=j+2*i)
+			{
+				p[j]=0;
+			}
+		}
+	}
+	for(int i=2;i<=n;i++)
+    {
+        if(p[i])
+            primes.push_back(i);
+    }
+return primes;
+}
+/* The concept of efficent Prime Factorisation is that be get a vector of Prime from seive and then we start iterating
+   over the primes and divide the number by prime and divide till it becomes imdivisible and then increment our value*/
+int main()
+{
+    int m;
+    cin>>m;
+    vector<int> primes;
+	int N=100000;
+	int p[N]={0};
+	primes=primeSieve(p,100);
+	int i=0;
+	int o=primes[i];
+	vector<int> factors;
+	while(o*o<=m)
+    {
+        if(m%o==0)
+        {
+            factors.push_back(o);
+            while(m%o==0)
+            {
+                m=m/o;
+            }
+        }
+        i++;
+        o=primes[i];
+    }
+    if(m!=1)
+        factors.push_back(m);
+    for(auto i : factors)
+        cout<<i<<" ";
+
+
+
+}
