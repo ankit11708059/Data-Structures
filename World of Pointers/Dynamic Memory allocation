@@ -1,0 +1,3 @@
+Q1 . What is memory leak ?
+Ans : Let us suppose that we are continuously allocating the memory and we forget to delete it now our memory is leaking continously
+      It causes to Memory Leak.
