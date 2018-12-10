@@ -1,45 +1,45 @@
-**********************************************************************************************************************************
-**********************************************************************************************************************************
-                                                    BASICS OF POINTERS
- *********************************************************************************************************************************
- *********************************************************************************************************************************
-
-
-When we write // int i;
-It means that we ordered our computer to block a memory of 4 byte in our computer and each byte has some address
-now if we write //int *p = & i;
-It means that we have intialised a pointer variable to address of i . Pointers in computer Science is made to store 
-address. To access that variable to to change the value inside the variable we have two roads either with the help of
-pointer or with the help of variable itself. Now we have address of the variable inside p to get the value inside p we derefrence
-it like we write *p.
-
+#include<bits/stdc++.h>
+using namespace std;
+/*1. It is the best optimization to calculate Prime number as we have used simple logics.
+  2. Its Complexity is O(n).
+  3. The two important base case used here is that we know that 0 and 1 are not Prime
+     so we assigned there indices to 0 and a Prime no is always a odd so we assigned all
+	 odd indices to 1 now start iterating from 3 and if a number is multiple of any number 
+	 assign 0 to 1.
+  4. Indices have value of 1 is Prime number.If a number is not Prime its all multiple
+     indices are also not Prime.
+  5. I have started j from i*i because its multiple before i*i is already being division 
+     to some number*/
   
-  
-  
-  
-  
-  *******************************************************************************************************************************
-  *******************************************************************************************************************************
-                                               POINTERS ARITHMETIC
-  ******************************************************************************************************************************
-  ******************************************************************************************************************************
-  
-   Now we know that we have a pointer variable and we want to increment the value present inside the address so first we derefrence
-   it and then add 1 like // *(p) + 1
-   But if we simply do this p+1 then if my p has address of 400 it will be incremented by 4 and become 404.
- 
-         
-    *****************************************************************************************************************************
-    *****************************************************************************************************************************
-                                             ARRAY AND POINTERS
-    *****************************************************************************************************************************
-    *****************************************************************************************************************************
-    Let us suppose that we have initialised a array as // a[3]={1,2,3};
-    Now we know that the we can can access the array value as a[0] here we will get first value of the array
-    But if we cout just only a then we get the address of first index and if we derefrence a then we would get the value at first
-    index. We Just cout &a also then we will get the address of first value.
-      
-      
-      
-     ***************************************************************************************************************************
-     ***************************************************************************************************************************
+void primeSieve(int *p,int n)
+{
+	p[0]=0;
+	p[1]=0,p[2]=1;
+	
+	for(int i=3;i<=n;i=i+2)
+	{
+		p[i]=1;
+	}
+	for(int i=3;i<=n;i=i+2)
+	{
+		if(p[i])
+		{
+			for(int j=i*i;j<=n;j=j+2*i)
+			{
+				p[j]=0;
+			}
+		}
+	}
+	
+}
+int main()
+{
+	int N=100000;
+	int p[N]={0};
+	primeSieve(p,100);
+	for(int i=0;i<=100;i++)
+	{
+		if(p[i])
+		cout<<i<<" ";
+	}
+}
