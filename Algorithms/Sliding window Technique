@@ -1,0 +1,4 @@
+/*  We can understand this technique with the help of window span in the buses. Let us suppose that i am given a array now 
+i have to tell the maximum sum of k consecutive elements in the array now we will run the loop upto n-k and firstly we will
+calculate the sum of first k elements and the for second consecutive sum of k elements we have to add the upcoming element
+and subtract the starting index of previous sum */
