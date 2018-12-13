@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int subs(string a,string output[])
+{
+    if(a.empty()==true)
+    {
+        output[0]="";
+        return 1;
+    }
+    string smallString=a.substr(1);
+    int smallSize=subs(smallString,output);
+    for(int i=0;i<smallSize;i++)
+    {
+        output[i+smallSize]=a[0]+output[i];
+    }
+    return 2*smallSize;
+
+}
+int main()
+{
+    string a;
+    cin>>a;
+    string output[100];
+    int c=subs(a,output);
+    for(int i=0;i<c;i++)
+    {
+        cout<<output[i]<<" ";
+    }
+}
