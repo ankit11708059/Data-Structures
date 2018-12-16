@@ -1,0 +1,50 @@
+/**********
+ * Following is the Node class that is already written.
+ 
+class Node{
+public:
+    int data;
+    Node *next;
+    Node(int data){
+        this -> data = data;
+        this -> next = NULL;
+    }
+};
+ 
+*********/
+
+Node* deleteNode(Node *head, int i) {
+    /* Don't write main().
+     * Don't read input, it is passed as function argument.
+     * Return output and don't print it.
+     * Taking input is handled automatically.
+     */
+  int k=0;
+  Node *temp=head,*a;
+  if(i==0)
+  {
+    a=temp->next;
+    head=a;
+    delete temp;
+    return head;
+  }
+  else
+  {
+    while(k<i-1 && temp->next!=NULL)
+    {
+      k++;
+      temp=temp->next;
+    }
+    if(temp->next!=NULL){
+    a=temp->next;
+    temp->next=a->next;
+    delete a;
+    return head;
+    }
+    return head;
+    
+  }
+    
+}
+
+
