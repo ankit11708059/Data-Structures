@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+char keypad[10][10]={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+
+string output;
+
+void printkeypad(string d,string h,int i,int j)
+{
+    if(d[i]=='\0')
+    {
+        cout<<h<<endl;
+    }
+        int digit=d[i]-'0';
+        for(int j=0;keypad[digit][j];j++)
+        {
+            h=h+keypad[digit][j];
+            printkeypad(d.substr(1),h,i,j);
+            h.pop_back();
+        }
+}
+void print(int n)
+{
+    string d=to_string(n);
+    string h="";
+    printkeypad(d,h,0,0);
+
+}
+int main()
+{
+    int n;
+    cin>>n;
+    print(n);
+}
