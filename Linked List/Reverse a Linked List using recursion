@@ -1,0 +1,30 @@
+// Following is the node structure
+/**************
+class node{
+public:
+    int data;
+    node * next;
+    node(int data){
+        this->data=data;
+        this->next=NULL;
+    }
+};
+***************/
+node *reverse_linked_list_rec(node *head)
+{
+  if(head==NULL || head->next==NULL)
+  {
+    return head;
+  }
+  node *ans=reverse_linked_list_rec(head->next);
+  node *b=ans;
+  while(b->next!=NULL)
+  {
+    b=b->next;
+  }
+  b->next=head;
+  head->next=NULL;
+  return ans;
+  
+}
+
