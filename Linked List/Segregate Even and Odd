@@ -1,0 +1,60 @@
+// Following is the node structure
+/**************
+class node{
+public:
+    int data;
+    node * next;
+    node(int data){
+        this->data=data;
+        this->next=NULL;
+    }
+};
+***************/
+
+node* arrange_LinkedList(node* head)
+{
+  if(head==NULL || head->next==NULL)
+    return head;
+  node *evenhead=NULL,*lasteven=NULL,*oddhead=NULL,*lastodd=NULL,*temp=head;
+  
+  while(temp!=NULL)
+  {
+     if(temp->data%2==0)
+     {
+       if(evenhead==NULL)
+       {
+         evenhead=temp;
+         lasteven=evenhead;
+       }
+       else
+       {
+         lasteven->next=temp;
+         lasteven=temp;
+       }
+     }
+    else
+    {
+       if(oddhead==NULL)
+       {
+         oddhead=temp;
+         lastodd=oddhead;
+       }
+       else
+       {
+         lastodd->next=temp;
+         lastodd=temp;
+       }
+     }
+    
+    if(temp->next==NULL)
+      break;
+    temp=temp->next;
+    }
+  if(evenhead==NULL || oddhead==NULL)
+    return head;
+  lastodd->next=evenhead;
+  lasteven->next=NULL;
+  return oddhead;
+  
+ 
+}
