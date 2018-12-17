@@ -1,0 +1,63 @@
+/**********
+ * Following is the Node class that is already written.
+ 
+class Node{
+public:
+    int data;
+    Node *next;
+    Node(int data){
+        this -> data = data;
+        this -> next = NULL;
+    }
+};
+ 
+*********/
+
+Node* mergeTwoLLs(Node *head1, Node *head2) {
+ 
+  Node *temp1=head1,*temp2=head2,*ptr=NULL,*i;
+  while(temp1!=NULL && temp2!=NULL)
+  {
+    if(temp1->data<=temp2->data)
+    {
+      if(ptr!=NULL)
+      {
+        ptr->next=temp1;
+        ptr=temp1;
+        temp1=ptr->next;
+      }
+      else
+      {
+        ptr=temp1;
+        i=ptr;
+        temp1=ptr->next;
+ 
+      }
+    }
+    else
+    {
+      if(ptr==NULL){
+      ptr=temp2;
+        i=ptr;
+      }
+      else
+      ptr->next=temp2;
+      ptr=temp2;
+      temp2=ptr->next;
+    }
+  }
+  while(temp1!=NULL)
+  {
+    ptr->next=temp1;
+    ptr=temp1;
+    temp1=ptr->next;
+  }
+   while(temp2!=NULL)
+  {
+    ptr->next=temp2;
+    ptr=temp2;
+    temp2=ptr->next;
+  }
+  ptr->next=NULL;
+ return i;
+}
