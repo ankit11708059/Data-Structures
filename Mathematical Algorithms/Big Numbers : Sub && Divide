@@ -1,0 +1,83 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+string divide(string a,int b)
+{
+    int index=0;
+    int temp=a[index]-'0';
+    while(temp<b)
+    {
+        temp=temp*10+a[++index]-'0';
+    }
+    string o="";
+    while(index<a.size())
+    {
+        o+=((temp/b)+'0');
+        temp=(temp%b)*10+(a[++index]-'0');
+    }
+    return o;
+}
+string sub(string a,string b)
+{
+    string c="";
+    int n1=a.size();
+    int n2=b.size();
+    int carry=0;
+    reverse(a.begin(),a.end());
+    reverse(b.begin(),b.end());
+    for(int i=0;i<n2;i++)
+    {
+        int t=((a[i]-'0')-(b[i]-'0')-carry);
+        if(t<0)
+        {
+            t=t+10;
+            carry=1;
+        }
+        else
+            carry=0;
+        c.push_back(t+'0');
+    }
+    for(int j=n2;j<n1;j++)
+    {
+
+         int t=((a[j]-'0')-carry);
+        if(t<0)
+        {
+            t=t+10;
+            carry=1;
+        }
+        else
+            carry=0;
+        c.push_back(t+'0');
+    }
+    reverse(c.begin(),c.end());
+    string k="";
+    int flag=0;
+    for(auto i : c)
+    {
+        if(i=='0' && flag==0)
+        continue;
+        else{
+        k=k+i;
+        flag=1;
+        }
+
+    }
+    return k;
+
+}
+int main()
+{
+    int t=10;
+    while(t--){
+    string a,b;
+    cin>>a>>b;
+    string k=sub(a,b);
+    string g=divide(k,2);
+    string a1=sub(a,g);
+    cout<<a1<<endl;
+    cout<<g<<endl;
+    }
+
+
+}
