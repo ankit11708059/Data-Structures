@@ -1,63 +1,57 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void update(int *tree,int ss,int se,int incre,int i,int index)
-{
-	if(i<ss || i>se)
-	{
-		return;
-	}
-	if(ss==se){
-	tree[index]=tree[index]+incre;
-	return;
-}
-	int mid=(ss+se)/2;
-	update(tree,ss,mid,incre,i,2*index);
-	update(tree,mid+1,se,incre,i,2*index+1);
-	tree[index]=min(tree[2*index],tree[2*index+1]);
-	
-}
-int query(int *tree,int ss,int ee,int qs,int qe,int index)
-{
-	if(ss>=qs && ee<=qe)
-	{
-		return tree[index];
-	}
-	else if(qs>ee || qe<ss)
-	{
-		return INT_MAX;
-	}
-	int mid=(ss+ee)/2;
-	int la=query(tree,ss,mid,qs,qe,2*index);
-	int ra=query(tree,mid+1,ee,qs,qe,2*index+1);
-	return min(la,ra);
-}
-void buildTree(int *a,int s,int e,int *tree,int index)
-{
-    if(s==e){
-	tree[index]=a[s];
-	return;
-    }
-    int mid=(s+e)/2;
-    buildTree(a,s,mid,tree,2*index);
-    buildTree(a,mid+1,e,tree,2*index+1);
-    tree[index]=min(tree[2*index],tree[2*index+1]);
-    
-}
 
+void buildtree(int *tree,int *a,int as,int ae,int index)
+{
+    if(as>ae)
+        return;
+    if(as==ae)
+    {
+        tree[index]=a[as];
+        return ;
+    }
+
+    int mid=(as+ae)/2;
+    buildtree(tree,a,as,mid,2*index);
+    buildtree(tree,a,mid+1,ae,2*index+1);
+    tree[index]=min(tree[2*index],tree[2*index+1]);
+    return;
+}
+int query(int q1,int q2,int *tree,int as,int ae,int index)
+{
+    if(as>=q1 && q2>=ae)
+    {
+        return tree[index];
+    }
+    else if(q1>ae || q2<as)
+    {
+        return INT_MAX;
+    }
+    int mid=(as+ae)/2;
+    int left=query(q1,q2,tree,as,mid,2*index);
+    int right=query(q1,q2,tree,mid+1,ae,2*index+1);
+    return min(left,right);
+}
 int main()
 {
-	int a[]={1,3,2,-5,6,4};
-	int n=6;
-	int *tree=new int[13];
-	buildTree(a,0,5,tree,1);
-	update(tree,0,5,15,3,1);
-	int q=5;
-	while(q--)
-	{
-		int l,r;
-		cin>>l>>r;
-		cout<<query(tree,0,5,l,r,1);
-	}
-	
+    int n;
+    cin>>n;
+    int a[n];
+    for(int i=1;i<=n;i++)
+    {
+        cin>>a[i];
+    }
+    int *tree=new int[2*n+2];
+    buildtree(tree,a,1,n,1);
+    int q,x,y;
+    cout<<"Enter No of Queries\n";
+    cin>>q;
+    for(int i=1;i<=q;i++)
+    {
+        cin>>x>>y;
+        cout<<query(x,y,tree,1,n,1)<<endl;
+    }
+
+
 }
