@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int gcd,x,y;
+void extentedgcd(int a,int b)
+{
+    if(b==0)
+    {
+        x=1;
+        y=0;
+        gcd=a;
+        return;
+    }
+    extentedgcd(b,a%b);
+    int cx=y;
+    int cy=x-(a/b)*y;
+
+    x=cx;
+    y=cy;
+}
+int main()
+{
+    extentedgcd(18,30);
+    cout<<x<<" "<<y<<endl;
+}
