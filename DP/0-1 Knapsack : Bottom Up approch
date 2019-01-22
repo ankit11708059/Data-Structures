@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+
+int knapsack(int maxw,int n,int *value,int *weight)
+{
+    int memopad[n+1][maxw+1]={0};
+    int in,ex;
+    for(int i=0;i<=n;i++)
+    {
+        for(int j=0;j<=maxw;j++)
+        {
+            if(i==0 || j==0)
+            {
+                memopad[i][j]=0;
+
+            }
+            else{
+            in =0,ex=0;
+            if(weight[i-1]<=j)
+            in=value[i-1]+memopad[i-1][j-weight[i-1]];
+            ex=memopad[i-1][j];
+            memopad[i][j]=max(in,ex);
+            }
+
+        }
+    }
+
+      return memopad[n][maxw];
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+    int n,maxw;
+    cin>>n>>maxw;
+    int weight[n],value[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>value[i];
+    }
+    for(int i=0;i<n;i++)
+    {
+        cin>>weight[i];
+    }
+    int knap=knapsack(maxw,n,value,weight);
+    cout<<knap<<endl;
+    }
+}
