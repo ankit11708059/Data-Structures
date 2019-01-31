@@ -1,0 +1,65 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+/* The Concept used in this question is vertical order means the nodes that are coming under same vertical line 
+should be printed together so if we mark 0 root subract -1 from left and add 1 to right then our code seems quite good/
+
+class BinaryTree
+{
+    public:
+    int data;
+    BinaryTree *left;
+    BinaryTree *right;
+    BinaryTree(int newNode)
+    {
+        this->data=newNode;
+        this->left=NULL;
+        this->right=NULL;
+    }
+};
+
+BinaryTree* create()
+{
+    int rt;
+    cin>>rt;
+    if(rt==-1)
+    return NULL;
+    BinaryTree *node=new BinaryTree(rt);
+    cout<<"Enter left\n";
+    node->left=create();
+    cout<<"Enter right\n";
+    node->right=create();
+
+
+}
+int main()
+{
+  BinaryTree *root=create();
+  queue<pair<BinaryTree*,int>> q;
+  int hd=0;
+  map<int,vector<int>> mapy;
+  q.push(make_pair(root,0));
+  while(!q.empty())
+  {
+      pair<BinaryTree*,int> p=q.front();
+      q.pop();
+      BinaryTree* a=p.first;
+      int b=p.second;
+      mapy[b].push_back(a->data);
+      if(a->left)
+      q.push(make_pair(a->left,--hd));
+      if(a->right){
+            hd=hd+2;
+      q.push(make_pair(a->right,hd));
+      }
+  }
+  for(auto i : mapy)
+  {
+      int y=i.first;
+      for(auto j : mapy[y])
+      {
+          cout<<j<<" i is "<<y<<endl;
+      }
+      cout<<endl;
+  }
+}
