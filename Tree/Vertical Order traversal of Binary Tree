@@ -2,7 +2,10 @@
 using namespace std;
 
 /* The Concept used in this question is vertical order means the nodes that are coming under same vertical line 
-should be printed together so if we mark 0 root subract -1 from left and add 1 to right then our code seems quite good/
+should be printed together so if we mark 0 root subract -1 from left and add 1 to right then our code seems quite good
+one important concept is that if we sent array in a function it is default by reference but for map in receiveing function we have 
+to use &
+*/
 
 class BinaryTree
 {
