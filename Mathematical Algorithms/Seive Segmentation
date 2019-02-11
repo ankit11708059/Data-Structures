@@ -1,18 +1,24 @@
 #include<bits/stdc++.h>
 using namespace std;
 /*   What is Seive Segmentation and why we use it ?
-Ans :It is used to calculate Prime number between a range and we are not supposed to make array of such large range */ 
+Ans :It is used to calculate Prime number between a range and we are not supposed to make array of such large range 
+The main concept here is that i am not supposed to make a array more than 10 to the pow(10,6) but we can use seive segmentation
+when the differece is less than pow(10,6) so first we have to calculate prime pow(10,6) now from 2 to sqrt(b) we mark numbers which are
+multiples of prime int the array a to b we just subtract the value that we got from 1 to sqrt(b) from current value between a and b*/
 
-void primeSieve(int *p,int n)
+int n=1000000;
+int N=1000000;
+int p[1000000]={0};
+void primeSieve()
 {
 	p[0]=0;
 	p[1]=0,p[2]=1;
 
-	for(int i=3;i<=n;i=i+2)
+	for(int i=3;i*i<=n;i=i+2)
 	{
 		p[i]=1;
 	}
-	for(int i=3;i<=n;i=i+2)
+	for(int i=3;i*i<=n;i=i+2)
 	{
 		if(p[i])
 		{
@@ -26,13 +32,14 @@ void primeSieve(int *p,int n)
 }
 int main()
 {
+    int t;
+    cin>>t;
+    while(t--){
     int a,b;
     cin>>a>>b;
-	int N=100000;
-	int p[N]={0};
 	int f[b-a+1];
 	memset(f,1,sizeof(f));
-	primeSieve(p,100);
+	primeSieve();
 for(int i=2;i<=sqrt(b);i++)
     {
         if(p[i])
@@ -50,7 +57,11 @@ for(int i=2;i<=sqrt(b);i++)
     {
         if(f[i-a])
         {
+            if(i==1)
+            continue;
             cout<<i<<" ";
         }
+    }
+    cout<<endl;
     }
 }
