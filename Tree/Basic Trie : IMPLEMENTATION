@@ -1,0 +1,75 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define hashmap unordered_map<char,node*>
+
+class node
+{
+public:
+    char data;
+    hashmap h;
+    bool isTerminal;
+
+    node(char data)
+    {
+        this->data=data;
+        isTerminal=false;
+    }
+};
+
+class Trie
+{
+public :
+  node* root;
+  Trie()
+  {
+      root=new node('\0');
+  }
+  void addword(char *word)
+  {
+      node *temp=root;
+      for(int i=0;word[i]!='\0';i++)
+      {
+          char ch=word[i];
+          if(temp->h.count(ch)==0)
+          {
+              node *a=new node(ch);
+              temp->h[ch]=a;
+              temp=a;
+          }
+          else
+            temp=temp->h[ch];
+      }
+      temp->isTerminal=true;
+  }
+  bool searc(char *word)
+  {
+      node *temp=root;
+      for(int i=0;word[i]!='\0';i++)
+      {
+          char ch=word[i];
+
+          if(temp->h.count(ch))
+          {
+              temp=temp->h[ch];
+          }
+          else
+            return false;
+      }
+      if(temp->isTerminal==true)
+        return true;
+      else
+        return false;
+  }
+};
+int main()
+{
+    char ankit[100][100]={"ankit","sharma","deepak"};
+    Trie t;
+    for(int i=0;i<3;i++)
+    {
+        t.addword(ankit[i]);
+    }
+    cout<<t.searc("deepak");
+}
