@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+vector<stack<int>> v;
+class BinaryTree
+{
+    public:
+    int data;
+    BinaryTree *left,*right;
+    BinaryTree(int d)
+    {
+        data=d;
+        left=NULL;
+        right=NULL;
+    }
+};
+
+BinaryTree* takeinput()
+{
+    int d;
+    cin>>d;
+    if(d==-1)
+    return NULL;
+    BinaryTree *root=new BinaryTree(d);
+    root->left=takeinput();
+    root->right=takeinput();
+}
+void preorder(BinaryTree *ankit,stack<int> s,int sum)
+{
+    if(ankit==NULL)
+        return;
+    s.push(ankit->data);
+    sum+=ankit->data;
+    preorder(ankit->left,s,sum);
+    if(sum==7)
+    {
+        v.push_back(s);
+    }
+    preorder(ankit->right,s,sum);
+    int g=s.top();
+    s.pop();
+    sum-=g;
+}
+int main()
+{
+     BinaryTree *root=takeinput();
+     stack<int> s;
+     int sum=0;
+
+     preorder(root,s,sum);
+     for(auto i : v)
+     {
+         while(!i.empty())
+         {
+             int y=i.top();
+             cout<<y<<" ";
+             i.pop();
+         }
+         cout<<endl;
+     }
+}
