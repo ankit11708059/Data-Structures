@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    string n,m;
+    getline(cin,n);
+    cin>>m;
+    int i=0;
+    int j=0;
+    int k=0;
+    while(i <= (n.size()))
+    {
+        if(k==m.size())
+        {
+            cout<<"Pattern found at "<<i-k<<endl;
+            j=0;
+            k=0;
+            continue;
+        }
+        if(m[j]==n[i])
+        {
+            j++;
+            i++;
+            k++;
+        }
+        else
+        {
+            j=0;
+            i++;
+            k=0;
+        }
+    }
+    cout<<n<<endl<<m<<endl;;
+}
